@@ -25,14 +25,14 @@ echo ""
 #sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/C*.repo
 #sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/C*.repo
 #sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/C*.repo
-yum install epel-release -y
+#yum install epel-release -y
 yum install wget git mtr vim mlocate nmap tcpdump mc nano lynx rsync minicom screen htop subversion yum-utils p7zip p7zip-plugins -y
 updatedb
 echo ""
 echo "Atualizando o sistema..."
 echo ""
 git clone https://github.com/felipeortiz21/IssabelBr-5.git /usr/src/IssabelBR
-rsync --progress -r /usr/src/IssabelBR/repo/ /etc/yum.repos.d/
+#rsync --progress -r /usr/src/IssabelBR/repo/ /etc/yum.repos.d/
 yum -y update && yum -y upgrade
 echo ""
 echo "Instalando patch de idiomas, cdr e bilhetagem..."

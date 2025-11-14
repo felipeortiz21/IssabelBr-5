@@ -79,13 +79,6 @@ $(document).ready(function(e) {
 </script>
 {/literal}{/if}
 
-        <!-- Neo Progress Bar -->
-        <div class="neo-modal-issabel-popup-box">
-            <div class="neo-modal-issabel-popup-title"></div>
-            <div class="neo-modal-issabel-popup-close"></div>
-            <div class="neo-modal-issabel-popup-content"></div>
-        </div>
-        <div class="neo-modal-issabel-popup-blockmask"></div>
 {if $ISSABEL_PANELS}
         <div id="chat" class="fixed">
             <div class="chat-inner">
