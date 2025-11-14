@@ -1,0 +1,70 @@
+ChangeLog 
+
+1.0.0 - 23/04/2018
+* Correção da Tradução da Pagina Backup/Restauração
+* Correção da Tradução da Pagina Gravações (download funcionando)
+* Correção da Tradução da Pagina Uso de Canais
+* Patch na Pagina Relatórios de Ligação com Status em Português
+* Patch na Pagina Billing Report para Calcular cadencia brasileira 30/6
+* Instalação do Audio em Português Brasileiro
+* Instalação do Codec g729 Free
+
+1.0.1 - 24/04/2018
+* Correção do patch para Audio em Português no Protocolo IAX
+
+1.0.2 - 24/04/2018
+* Recompilação do DAHDI para resolver a atualização do Kernel e DAHDI
+* Adicionado patch para tratar Hangup Cause - SIP para Ocupado e Numero Inexistente
+
+1.0.3 - 25/04/2018
+* Backup do arquivo original do Relatório de Ligações e do Relatório de Faturamento
+
+1.0.4 - 25/04/2018
+* Tradução do Faturamento
+
+1.0.5 - 26/04/2018
+* Correção do Features Dialplan para Asterisk 13 // Contribuição do Mike Teliusk
+
+1.0.6 - 27/04/2018
+* Removido Recompilação do DAHDI - Lançcada atualização oficial resolve oficialmente o problema
+
+1.0.7 - 30/04/2018
+* Adicionado instalação do sngrep
+
+1.0.8 - 11/05/2018
+* Adicionado traduções para módulo Call Center
+
+1.0.9 - 15/05/2018
+* Instalação do Call Center por padrão
+* Adicionado patch para Monitoramento da Campanha exibir o nome do Agente e não o numero
+
+1.1.0 - 29/05/2018
+* Adicionado defaltulanguage=pt_BR no Asterisk.conf - Configuração geral
+
+1.1.1 - 05/06/2018
+* Adicionado correção na busca e exibição das gravações do Issabel // Contribuição do Rhuan Soares
+
+1.1.3 - 10/10/2018
+* Adicionado um Checkbox com opção de esconder os 'Desconectados' no Módulo Call Center // Contribuição do Renato Siqueira
+
+1.1.4 - 07/02/2019
+* Adicionado arquivos para funcionar CallCenter no Asterisk 13
+
+1.1.5 - 22/02/2019
+* Adicionado solução para call groups
+
+1.1.6 - 28/02/2019
+* Removido PopUp de Cadastro
+* Alterado musiconhold dos Agentes para Silencio
+
+1.1.7 - 28/03/2019
+* Resolvido informações no banco de dados sqlite3 para billing no Asterisk 13 // Patrocinado pela Netscience
+
+1.2.0 - 30/04/2020
+* Removido verificação da versão e instalação do g729
+  (Ja vem instalado por padrão e a verificação era para instalar o g729 de acordo com a versão do asterisk)
+* Desativado a remoção do Popup de Cadastro (Agora funciona, faz o registro ;) )
+* Pequena atualização na tradução do módulo backup
+
+1.2.1 - 10/08/2020
+* Add correção de audios pt-br // Contribuição do Luciano VoipEasy
