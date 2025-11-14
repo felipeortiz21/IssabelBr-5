@@ -1,0 +1,480 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+
+    
+	
+}
+
+
+/**
+ * Issabel 5 - Menu Aprimorado DEFINITIVO
+ * Versão com TODOS os bugs corrigidos, incluindo menu colapsado
+ */
+
+/* ============================================
+   SIDEBAR PRINCIPAL
+   ============================================ */
+
+.page-container .sidebar-menu {
+    background: linear-gradient(180deg, #522b76 0%, #42225e 100%) !important;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Logo */
+.page-container .sidebar-menu .logo-env {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 15px 0 !important;
+}
+
+/* ============================================
+   CAMPO DE BUSCA
+   ============================================ */
+
+.page-container .sidebar-menu #main-menu li#search {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    margin: 10px 8px !important;
+    padding: 5px !important;
+}
+
+.page-container .sidebar-menu #main-menu li#search:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.page-container .sidebar-menu #main-menu li#search .search-input {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+}
+
+.page-container .sidebar-menu #main-menu li#search button i {
+    color: #ffffff !important;
+    font-size: 16px !important;
+}
+
+/* ============================================
+   ITEMS DO MENU PRINCIPAL
+   ============================================ */
+
+.page-container .sidebar-menu #main-menu li {
+    border: none !important;
+    margin: 2px 8px !important;
+    border-radius: 5px !important;
+}
+
+.page-container .sidebar-menu #main-menu li > a {
+    color: #e6e0f0 !important;
+    padding: 11px 15px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    border-radius: 5px !important;
+    position: relative !important;
+    transition: all 0.2s ease !important;
+}
+
+.page-container .sidebar-menu #main-menu li > a:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    padding-left: 18px !important;
+}
+
+/* Item Ativo */
+.page-container .sidebar-menu #main-menu li.active > a {
+    background: rgba(249, 67, 153, 0.2) !important;
+    border-left: 3px solid #464344 !important;
+    font-weight: 600 !important;
+}
+
+/* Ícones */
+.page-container .sidebar-menu #main-menu li > a > i {
+    font-size: 17px !important;
+    margin-right: 10px !important;
+    width: 20px !important;
+}
+
+.page-container .sidebar-menu #main-menu li.active > a > i {
+    color: #464344 !important;
+}
+
+/* ============================================
+   SETINHA EXPANSÃO - MENU NORMAL
+   ============================================ */
+
+/* Esconder a setinha padrão que está causando problema */
+.page-container .sidebar-menu #main-menu li.has-sub > a:before {
+    display: none !important;
+}
+
+/* SETINHA MENU PRINCIPAL (somente para itens com submenu) */
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu > li.has-sub > a:after {
+    content: '›' !important;
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    font-family: Arial, sans-serif !important;
+    transition: transform 0.2s ease !important;
+}
+
+/* Remove qualquer seta automática existente */
+.page-container .sidebar-menu #main-menu li > a:after {
+    display: none !important;
+}
+
+/* SETA SOMENTE EM LI QUE TEM UL (submenu) */
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu li:has(> ul) > a:after {
+    content: '›' !important;
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #e4d8f5 !important;
+    transition: transform 0.2s ease !important;
+}
+
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu li:has(> ul).opened > a:after,
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu li:has(> ul).active > a:after {
+    transform: translateY(-50%) rotate(90deg) !important;
+}
+
+/* REMOVER de itens que NÃO têm UL */
+.page-container .sidebar-menu #main-menu li:not(:has(> ul)) > a:after {
+    display: none !important;
+}
+
+/* Quando estiver aberto */
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu > li.has-sub.active > a:after,
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu > li.has-sub.opened > a:after {
+    transform: translateY(-50%) rotate(90deg) !important;
+}
+
+/* ============================================
+   SETINHA NO MENU COLAPSADO - CORRIGIDO
+   ============================================ */
+
+/* Quando o menu está colapsado, mostrar setinha no TOOLTIP */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li.has-sub > a > span:not(.badge):after {
+    content: ' ›' !important;
+    margin-left: 5px !important;
+    display: inline !important;
+}
+
+/* NÃO mostrar setinha no ícone principal quando colapsado */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li.has-sub > a:after {
+    display: none !important;
+}
+
+/* ============================================
+   SUBMENU NO MODO COLAPSADO - CORRIGIDO
+   ============================================ */
+
+/* Garantir que submenus apareçam corretamente quando colapsado */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li > ul {
+    background: #522b76 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    min-width: 200px !important;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li ul li {
+    border: none !important;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li ul li a {
+    color: #e6e0f0 !important;
+    padding: 10px 15px !important;
+    white-space: nowrap !important;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li ul li a:hover {
+    background: rgba(249, 67, 153, 0.2) !important;
+}
+
+/* Remover o bullet dos submenus quando colapsado */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu li ul > li > a:before {
+    display: none !important;
+}
+
+/* ============================================
+   SUBMENUS NÍVEL 2 - MENU NORMAL
+   ============================================ */
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: none !important;
+    border-radius: 0 0 5px 5px !important;
+    padding: 5px 0 !important;
+    margin-top: 0 !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li {
+    border: none !important;
+    margin: 1px 8px !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a {
+    background: transparent !important;
+    color: #d4c5e6 !important;
+    padding: 8px 12px 8px 35px !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+    position: relative !important;
+}
+
+/* SUBMENU NÍVEL 1 — alinhar ao centro */
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu li ul > li > a:before {
+    content: '›' !important;
+    position: absolute !important;
+    left: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 15px !important;
+    color: #713ba3 !important;
+}
+
+.page-container:not(.sidebar-collapsed) 
+.sidebar-menu #main-menu li ul > li ul > li > a:before {
+    content: '•' !important;
+    left: 30px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 14px !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    padding-left: 38px !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a:hover:before {
+    color: #080004 !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li.active > a {
+    background: rgba(249, 67, 153, 0.2) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-left: 2px solid #464344 !important;
+}
+
+/* ============================================
+   SUBMENUS NÍVEL 3 - MENU NORMAL
+   ============================================ */
+
+/* Remover setinha dos submenus de nível 2 */
+.page-container .sidebar-menu #main-menu li ul > li.has-sub > a:after {
+    display: none !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li > a {
+    background: rgba(0, 0, 0, 0.15) !important;
+    padding-left: 50px !important;
+    font-size: 11px !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li > a:before {
+    left: 33px !important;
+    content: '•' !important;
+    font-size: 14px !important;
+    padding-top: 0px;
+}
+
+/* ============================================
+   SUBMENUS NÍVEL 4 - MENU NORMAL
+   ============================================ */
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li ul > li > a {
+    padding-left: 60px !important;
+    font-size: 11px !important;
+}
+
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li ul > li > a:before {
+    left: 43px !important;
+}
+
+/* ============================================
+   BOTÃO COLLAPSE
+   ============================================ */
+
+.page-container .sidebar-menu .logo-env > div.sidebar-collapse a,
+.page-container .sidebar-menu .logo-env > div.sidebar-mobile-menu a {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 5px !important;
+}
+
+.page-container .sidebar-menu .logo-env > div.sidebar-collapse a:hover {
+    background: rgba(249, 67, 153, 0.25) !important;
+}
+
+.entypo-menu {
+    color: #ffffff !important;
+}
+
+/* ============================================
+   SIDEBAR COLAPSADO - APARÊNCIA GERAL
+   ============================================ */
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li > a > span:not(.badge) {
+    background: #522b76 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #e6e0f0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li:hover > a {
+    background: rgba(249, 67, 153, 0.25) !important;
+}
+
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li#search .search-input {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+.page-container .sidebar-menu::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.page-container .sidebar-menu::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.15) !important;
+}
+
+.page-container .sidebar-menu::-webkit-scrollbar-thumb {
+    background: rgba(249, 67, 153, 0.5) !important;
+    border-radius: 3px !important;
+}
+
+.page-container .sidebar-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 67, 153, 0.7) !important;
+}
+
+/* ============================================
+   BADGES
+   ============================================ */
+
+.page-container .sidebar-menu #main-menu li a .badge {
+    background: #464344!important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    padding: 2px 6px !important;
+    border-radius: 10px !important;
+}
+
+/* ============================================
+   HEADER BAR
+   ============================================ */
+
+.main-content > div[style*="background-color:#373e4a"] {
+    background: linear-gradient(90deg, #522b76 0%, #42225e 100%) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   DROPDOWN PERFIL
+   ============================================ */
+
+.profile-info.dropdown .dropdown-menu {
+    background: linear-gradient(180deg, #522b76 0%, #42225e 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 6px !important;
+}
+
+.profile-info.dropdown .dropdown-menu > li {
+    border-bottom: none !important;
+}
+
+.profile-info.dropdown .dropdown-menu li a {
+    color: #e6e0f0 !important;
+    padding: 10px 18px !important;
+}
+
+.profile-info.dropdown .dropdown-menu li a:hover {
+    background: rgba(249, 67, 153, 0.25) !important;
+}
+
+.profile-info.dropdown.pull-right .dropdown-menu {
+    background-color: #522b76 !important;
+}
+
+/* ============================================
+   BREADCRUMB
+   ============================================ */
+
+ol.breadcrumb.bc-2 {
+    background: rgba(82, 43, 118, 0.05) !important;
+    border-bottom: 1px solid rgba(82, 43, 118, 0.15) !important;
+    padding: 12px 20px !important;
+}
+
+ol.breadcrumb.bc-2 li a {
+    color: #522b76 !important;
+}
+
+ol.breadcrumb.bc-2 li a:hover {
+    color: #464344!important;
+}
+
+ol.breadcrumb.bc-2 li.active strong {
+    color: #522b76 !important;
+}
+
+/* ============================================
+   NOTIFICAÇÕES
+   ============================================ */
+
+#notibell:hover {
+    color: #464344!important;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .page-container .sidebar-menu #main-menu li > a {
+        padding: 10px 12px !important;
+        font-size: 12px !important;
+    }
+    
+    .page-container .sidebar-menu #main-menu li > a > i {
+        font-size: 15px !important;
+    }
+}
+
+/* ============================================
+   ACESSIBILIDADE
+   ============================================ */
+
+.page-container .sidebar-menu #main-menu li > a:focus,
+.page-container .sidebar-menu #main-menu li ul > li > a:focus {
+    outline: 2px solid #464344!important;
+    outline-offset: 2px !important;
+}
+
+/* ============================================
+   FIM - VERSÃO DEFINITIVA
+   ============================================ */

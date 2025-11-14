@@ -1,0 +1,239 @@
+/* SIDEBAR AZUL */
+.page-container .sidebar-menu {
+    background: linear-gradient(180deg, #3952ff 0%, #2d3ecc 100%) !important;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.25) !important;
+}
+
+/* Logo */
+.page-container .sidebar-menu .logo-env {
+    background: rgba(0,0,0,0.15) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.15) !important;
+    padding: 15px 0 !important;
+}
+
+/* Campo de busca */
+.page-container .sidebar-menu #main-menu li#search {
+    background: rgba(255,255,255,0.15) !important;
+    border: none !important;
+    border-radius: 6px !important;
+    margin: 10px 8px !important;
+    padding: 5px !important;
+}
+.page-container .sidebar-menu #main-menu li#search:hover {
+    background: rgba(255,255,255,0.25) !important;
+}
+.page-container .sidebar-menu #main-menu li#search .search-input {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+}
+.page-container .sidebar-menu #main-menu li#search button i {
+    color: #ffffff !important;
+    font-size: 16px !important;
+}
+
+/* Itens do menu */
+.page-container .sidebar-menu #main-menu li {
+    border: none !important;
+    margin: 2px 8px !important;
+    border-radius: 5px !important;
+}
+.page-container .sidebar-menu #main-menu li > a {
+    color: #eef1ff !important;
+    padding: 11px 15px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    border-radius: 5px !important;
+    position: relative !important;
+    transition: all 0.2s ease !important;
+}
+.page-container .sidebar-menu #main-menu li > a:hover {
+    background: rgba(255,255,255,0.18) !important;
+    padding-left: 18px !important;
+}
+
+/* Item ativo */
+.page-container .sidebar-menu #main-menu li.active > a {
+    background: rgba(255,255,255,0.25) !important;
+    border-left: 3px solid #ffffff !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+}
+.page-container .sidebar-menu #main-menu li.active > a > i {
+    color: #ffffff !important;
+}
+
+/* Ícones */
+.page-container .sidebar-menu #main-menu li > a > i {
+    font-size: 17px !important;
+    margin-right: 10px !important;
+    width: 20px !important;
+}
+
+/* Setas – só quem tem submenu */
+.page-container .sidebar-menu #main-menu li.has-sub > a:before {
+    display: none !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu > li.has-sub > a:after {
+    content: '›' !important;
+    position: absolute !important;
+    right: 15px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    transition: transform 0.2s ease !important;
+    font-family: Arial, sans-serif !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu > li.has-sub.active > a:after,
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu > li.has-sub.opened > a:after {
+    transform: rotate(90deg) !important;
+}
+
+/* Menu colapsado */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li.has-sub > a:after {
+    display: none !important;
+}
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li.has-sub > a > span:not(.badge):after {
+    content: ' ›' !important;
+    margin-left: 5px !important;
+    display: inline !important;
+}
+
+/* Submenus nível 1 */
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul {
+    background: rgba(0,0,0,0.15) !important;
+    border: none !important;
+    border-radius: 0 0 5px 5px !important;
+    padding: 5px 0 !important;
+    margin-top: 0 !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li {
+    border: none !important;
+    margin: 1px 8px !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a {
+    background: transparent !important;
+    color: #e2e6ff !important;
+    padding: 8px 12px 8px 35px !important;
+    font-size: 12px !important;
+    border-radius: 4px !important;
+    position: relative !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a:before {
+    content: '›' !important;
+    position: absolute !important;
+    left: 10px !important;
+    padding-top: 6px;
+    font-size: 16px !important;
+    color: #dbe2ff !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li > a:hover {
+    background: rgba(255,255,255,0.15) !important;
+    color: #ffffff !important;
+    padding-left: 45px !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li.active > a {
+    background: rgba(255,255,255,0.25) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-left: 2px solid #ffffff !important;
+}
+
+/* Submenus nível 2 */
+.page-container .sidebar-menu #main-menu li ul > li.has-sub > a:after {
+    display: none !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li > a {
+    background: rgba(0,0,0,0.15) !important;
+    padding-left: 50px !important;
+    font-size: 11px !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li > a:before {
+    left: 33px !important;
+    content: '•' !important;
+    font-size: 14px !important;
+}
+
+/* Submenus nível 3 */
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li ul > li > a {
+    padding-left: 60px !important;
+    font-size: 11px !important;
+}
+.page-container:not(.sidebar-collapsed) .sidebar-menu #main-menu li ul > li ul > li ul > li > a:before {
+    left: 43px !important;
+}
+
+/* Collapse button */
+.page-container .sidebar-menu .logo-env > div.sidebar-collapse a,
+.page-container .sidebar-menu .logo-env > div.sidebar-mobile-menu a {
+    background: rgba(0,0,0,0.2) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 5px !important;
+}
+.page-container .sidebar-menu .logo-env > div.sidebar-collapse a:hover {
+    background: rgba(255,255,255,0.25) !important;
+}
+.entypo-menu { color: #ffffff !important; }
+
+/* Sidebar colapsado */
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li > a > span:not(.badge) {
+    background: #3952ff !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    color: #eef1ff !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+}
+.page-container.sidebar-collapsed .sidebar-menu #main-menu > li:hover > a {
+    background: rgba(255,255,255,0.25) !important;
+}
+
+/* Scrollbar */
+.page-container .sidebar-menu::-webkit-scrollbar {
+    width: 6px !important;
+}
+.page-container .sidebar-menu::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.15) !important;
+}
+.page-container .sidebar-menu::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.45) !important;
+    border-radius: 3px !important;
+}
+.page-container .sidebar-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.75) !important;
+}
+
+/* Header azul */
+.main-content > div[style*="background-color:#373e4a"] {
+    background: linear-gradient(90deg, #3952ff 0%, #2d3ecc 100%) !important;
+}
+
+/* Dropdown perfil */
+.profile-info.dropdown .dropdown-menu {
+    background: linear-gradient(180deg, #3952ff 0%, #2d3ecc 100%) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+    border-radius: 6px !important;
+}
+.profile-info.dropdown .dropdown-menu li a {
+    color: #eef1ff !important;
+    padding: 10px 18px !important;
+}
+.profile-info.dropdown .dropdown-menu li a:hover {
+    background: rgba(255,255,255,0.25) !important;
+}
+
+/* Breadcrumb */
+ol.breadcrumb.bc-2 {
+    background: rgba(57,82,255,0.08) !important;
+    border-bottom: 1px solid rgba(57,82,255,0.25) !important;
+    padding: 12px 20px !important;
+}
+ol.breadcrumb.bc-2 li a {
+    color: #3952ff !important;
+}
+ol.breadcrumb.bc-2 li a:hover {
+    color: #1a2bd6 !important;
+}
+ol.breadcrumb.bc-2 li.active strong {
+    color: #3952ff !important;
+}
