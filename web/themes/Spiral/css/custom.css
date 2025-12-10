@@ -1,9 +1,211 @@
 /**
  *
- * Apply Here your Custom CSS
+ * Custom CSS - Header Minimalista
  *
 */
 
-body {
-	
+/* Header limpo e minimalista */
+.clean-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 10px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 50px;
+}
+
+.profile-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.profile-wrapper .user-info {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.profile-wrapper .profile-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-wrapper .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.profile-wrapper .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-wrapper .img-circle {
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.profile-wrapper .dropdown-toggle:hover .img-circle {
+    transform: scale(1.05);
+}
+
+.profile-wrapper .user-name {
+    font-weight: 500;
+    font-size: 13px;
+    color: white;
+}
+
+.profile-wrapper .dropdown-arrow {
+    color: white;
+    font-size: 14px;
+    margin-left: 3px;
+    transition: transform 0.3s ease;
+}
+
+.profile-wrapper .profile-info.open .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.profile-wrapper .dropdown-menu {
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+}
+
+.profile-wrapper .dropdown-menu li a {
+    padding: 10px 20px;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.profile-wrapper .dropdown-menu li a:hover {
+    background: #f8f9fa;
+    color: #667eea;
+}
+
+.profile-wrapper .dropdown-menu li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Ajustes no breadcrumb para compensar o header menor */
+.breadcrumb.bc-2 {
+    margin-top: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .clean-header {
+        padding: 10px 15px;
+        min-height: 60px;
+    }
+    
+    .profile-wrapper .user-name {
+        display: none;
+    }
+    
+    .profile-wrapper .dropdown-toggle {
+        padding: 6px 10px;
+    }
+}
+
+/* Modal de alteração de senha */
+#changePasswordModal .modal-dialog {
+    max-width: 500px;
+}
+
+#changePasswordModal .modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+#changePasswordModal .modal-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    padding: 15px 20px;
+}
+
+#changePasswordModal .modal-title {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#changePasswordModal .modal-header .close {
+    color: white;
+    opacity: 0.8;
+    text-shadow: none;
+    font-size: 28px;
+}
+
+#changePasswordModal .modal-header .close:hover {
+    opacity: 1;
+}
+
+#changePasswordModal .modal-body {
+    padding: 25px;
+}
+
+#changePasswordModal .tabForm {
+    width: 100%;
+}
+
+#changePasswordModal .tabForm td {
+    padding: 10px 5px;
+}
+
+#changePasswordModal .tabForm input[type="password"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+#changePasswordModal .tabForm input[type="password"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+#changePasswordModal .tabForm input[type="button"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+#changePasswordModal .tabForm input[type="button"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+#changePasswordModal .tabForm b {
+    color: #333;
+    font-weight: 500;
 }

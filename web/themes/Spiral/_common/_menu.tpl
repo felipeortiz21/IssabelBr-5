@@ -148,7 +148,7 @@ function openChangePasswordDialog() {
         <!-- logo -->
         <div class="logo">
             <a href="index.php">
-                <img src="{$WEBPATH}themes/{$THEMENAME}/images/issabel_logo_mini2.png" width="200" alt="" />
+                <img src="{$WEBPATH}themes/{$THEMENAME}/images/issabel_logo_mini2.png" width="160" alt="" />
             </a>
         </div>
         <!-- logo collapse icon -->
@@ -245,7 +245,7 @@ function openChangePasswordDialog() {
             <!-- Profile Info -->
             <li class="profile-info dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="index.php?menu=address_book&type=internal&action=getImage&idPhoto={$EXTENSION}&rawmode=yes&thumbnail=yes" alt="" class="img-circle" width="40" />
+                    <img src="index.php?menu=address_book&type=internal&action=getImage&idPhoto={$EXTENSION}&rawmode=yes&thumbnail=yes" alt="" class="img-circle" width="25" />
                     <span class="user-name">{$USER_LOGIN}</span>
                 </a>
                 <i class="fa fa-angle-down dropdown-arrow"></i>
