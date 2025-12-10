@@ -78,6 +78,50 @@ function removeNeoDisplayOnMouseOut(ref){
 function removeNeoDisplayOnMouseOver(ref){
     $(ref).find('div').removeClass('neo-display-none');
 }
+
+function openChangePasswordDialog() {
+    $.ajax({
+        url: 'index.php?menu=_issabelutils&action=dialogPasswordIssabel&rawmode=yes',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if(response.statusResponse === "OK" && response.message) {
+                // Cria o modal dinamicamente
+                var dialogHtml = '<div id="changePasswordModal" class="modal fade" tabindex="-1" role="dialog">' +
+                    '<div class="modal-dialog" role="document">' +
+                    '<div class="modal-content">' +
+                    '<div class="modal-header">' +
+                    '<button type="button" class="close" data-dismiss="modal">&times;</button>' +
+                    '<h4 class="modal-title">' + "Alterar Senha Spiral Callcenter" + '</h4>' +
+                    '</div>' +
+                    '<div class="modal-body">' +
+                    response.message.html +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+                
+                // Remove modal antigo se existir
+                $('#changePasswordModal').remove();
+                
+                // Adiciona o novo modal ao body
+                $('body').append(dialogHtml);
+                
+                // Mostra o modal
+                $('#changePasswordModal').modal('show');
+                
+                // Remove o modal do DOM quando for fechado
+                $('#changePasswordModal').on('hidden.bs.modal', function() {
+                    $(this).remove();
+                });
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Erro ao carregar dialog de senha:', error);
+            alert('Erro ao carregar formulário de alteração de senha.');
+        }
+    });
+}
 </script>
 {/literal}
 
@@ -142,8 +186,8 @@ function removeNeoDisplayOnMouseOver(ref){
             {/if}
                     <a href="index.php?menu={$idMenu}">
                          <i class="{$menu.icon}"></i>
-			<!--<span>{$idMenu}</span>-->
-			<span>{$menu.Name}</span>
+				<!--<span>{$idMenu}</span>-->
+				<span>{$menu.Name}</span>
                     </a>
                     <ul>
                         <!--recorremos el arreglo del menu nivel secundario-->
@@ -194,33 +238,30 @@ function removeNeoDisplayOnMouseOver(ref){
 
 <!-- inicio del head principal-->
 <div class="main-content">
-<div style="height:83px;background-color:#667eea;padding:15px;">
-    <!-- Profile Info and Notifications -->
-    <span style='float:right; text-align:right; padding:0px 5px 0px 0px; width:175px;' class="col-md-6 col-sm-8 clearfix">
-        <ul style='float:right;' class="user-info pull-none-xsm">
+<!-- Header minimalista com apenas perfil -->
+<div class="clean-header">
+    <div class="profile-wrapper">
+        <ul class="user-info">
             <!-- Profile Info -->
-            <li class="profile-info dropdown pull-right"><!-- add class "pull-right" if you want to place this from right -->
+            <li class="profile-info dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img  style="border:0px" src="index.php?menu=address_book&type=internal&action=getImage&idPhoto={$EXTENSION}&rawmode=yes&thumbnail=yes" alt="" class="img-circle" width="44" />
-                    {$USER_LOGIN}
+                    <img src="index.php?menu=address_book&type=internal&action=getImage&idPhoto={$EXTENSION}&rawmode=yes&thumbnail=yes" alt="" class="img-circle" width="40" />
+                    <span class="user-name">{$USER_LOGIN}</span>
                 </a>
-                <!-- Reverse Caret -->
-                <i style='font-size:15px;font-weight:bold;color:white;' class="fa fa-angle-down"></i>
+                <i class="fa fa-angle-down dropdown-arrow"></i>
                 <!-- Profile sub-links -->
                 <ul class="dropdown-menu">
-
                     <!-- Reverse Caret -->
                     <li class="caret"></li>
-
                     <!-- Profile sub-links -->
                     <li class="dropdown">
-                        <a href="#" class="setadminpassword">
+                        <a href="#" class="setadminpassword" onclick="openChangePasswordDialog(); return false;">
                             <i class="fa fa-user"></i>
                             {$CHANGE_PASSWORD}
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a {*data-toggle="dropdown"*} href="index.php?logout=yes" {*style="background-color: red"*}>
+                        <a href="index.php?logout=yes">
                             <i class="fa fa-sign-out"></i>
                             {$LOGOUT}
                         </a>
@@ -228,90 +269,10 @@ function removeNeoDisplayOnMouseOver(ref){
                 </ul>
             </li>
         </ul>
-    </span>
-
-    <!-- Raw Links -->
-    <span style='float:right; width:400px;'>
-        <ul style="padding-top:12px;" class="list-inline links-list pull-right neo-topbar-notification">
-
-        <li id="header_registration_info" class="profile-info dropdown">
-            <a data-toggle="dropdown" class="" href="#">
-                <i class="fa fa-info-circle"></i>
-            </a>
-            <ul class="dropdown-menu">
-
-                <!-- Reverse Caret -->
-                <li class="caret"></li>
-
-                <!-- Profile sub-links -->
-                <li><a href="#" class="register_link">{$Registered}</a></li>
-                <li><a href="#" id="viewDetailsRPMs"><i class="fa fa-cube"></i>{$VersionDetails}</a></li>
-                <li><a href="http://www.issabel.org" target="_blank"><i class="fa fa-external-link"></i>{$IssabelWebsite}</a></li>
-                <li><a href="#" id="dialogaboutissabel"><i class="fa fa-info-circle"></i>{$ABOUT_ISSABEL2}</a></li>
-            </ul>
-        </li>
-
-        <!--li id="header_notification_bar" class="dropdown">
-            <a {*data-toggle="dropdown"*} class="" href="index.php?menu=addons">
-                <i class="fa fa-cubes"></i>
-            </a>
-        </li-->
-
-        <!-- notification dropdown start-->
-        <!--li id="header_notification_bar" class="dropdown">
-            <a data-toggle="dropdown" class="" href="#">
-                <i class="fa fa-heartbeat"></i>
-            </a>
-        </li-->
-        <!-- notification dropdown end -->
-        <li id="header_notification_bar" class="profile-info dropdown pull-right notifications" style="float: none !important;">
-            <a data-toggle="dropdown" class="" href="#">
-                <i id='notibell' class="fa fa-bell-o {$ANIMATE_NOTIFICATION}"></i>
-            </a>
-            <ul class="dropdown-menu">
-
-                <!-- Reverse Caret -->
-                <li class="caret"></li>
-
-                        <li><p>{$NOTIFICATIONS.LBL_NOTIFICATION_SYSTEM}</p></li>
-                <li>
-                    <ul>
-                        {foreach from=$NOTIFICATIONS.NOTIFICATIONS_PUBLIC item=NOTI}
-                            <li id='notiitem{$NOTI.id}' class="{if $NOTI.level == "info"}notification-info{elseif $NOTI.level == "warning"}notification-warning{elseif $NOTI.level == "error"}notification-danger{/if}">
-                                <a href="#" onclick='readNoti("{$NOTI.id}")'><i class="{if $NOTI.level == "info"}fa fa-info{elseif $NOTI.level == "warning"}fa fa-warning{elseif $NOTI.level == "error"}fa fa-ban{/if}"></i>{$NOTI.content}</a>
-                            </li>
-                        {foreachelse}
-                            <li><p>{$NOTIFICATIONS.TXT_NO_NOTIFICATIONS}</p></li>
-                        {/foreach}
-                    </ul>
-                </li>
-                        <li><p>{$NOTIFICATIONS.LBL_NOTIFICATION_USER}</p></li>
-                <li>
-                    <ul>
-                        {foreach from=$NOTIFICATIONS.NOTIFICATIONS_PRIVATE item=NOTI}
-                            <li class="{if $NOTI.level == "info"}notification-info{elseif $NOTI.level == "warning"}notification-warning{elseif $NOTI.level == "error"}notification-danger{/if}">
-                                <a href="#"><i class="{if $NOTI.level == "info"}fa fa-info{elseif $NOTI.level == "warning"}fa fa-warning{elseif $NOTI.level == "error"}fa fa-ban{/if}"></i>{$NOTI.content}</a>
-                            </li>
-                        {foreachelse}
-                            <li><p>{$NOTIFICATIONS.TXT_NO_NOTIFICATIONS}</p></li>
-                        {/foreach}
-                    </ul>
-                </li>
-            </ul>
-        </li>
-{if $ISSABEL_PANELS}
-        <!-- SIDEBAR LIST -->
-        <li id="header_open_sidebar">
-            <a href="#" data-toggle="chat" data-collapse-sidebar="1"><i class="fa fa-th-list"></i></a>
-        </li>
-{/if}
-        </ul>
-    </span>
-
-
+    </div>
 </div>
 
-				<!-- Breadcrumb 3 -->
+					<!-- Breadcrumb 3 -->
 <ol class="breadcrumb bc-2">
 
     {foreach from=$BREADCRUMB item=value name=menu}
@@ -328,7 +289,7 @@ function removeNeoDisplayOnMouseOver(ref){
    {/foreach}
    <li id="tenant-help">
     <a class="" href="#" onclick="popUp('help/?id_nodo={if !empty($idSubMenu2Selected)}{$idSubMenu2Selected}&name_nodo={$nameSubMenu2Selected}{else}{$idSubMenuSelected}&name_nodo={$nameSubMenuSelected}{/if}','1000','460')"> 
-	<!--a href="http://help.issabel.org" target="_bank"-->
+		<!--a href="http://help.issabel.org" target="_bank"-->
         <i class="fa fa-support"></i>
     </a>
    </li>
@@ -345,7 +306,6 @@ function removeNeoDisplayOnMouseOver(ref){
         <input type="hidden" id="issabel_framework_module_id" value="{if empty($idSubMenu2Selected)}{$idSubMenuSelected}{else}{$idSubMenu2Selected}{/if}" />
         <input type="hidden" id="issabel_framework_webCommon" value="{$WEBCOMMON}" />
         <div class="neo-module-content">
-
 
 
 

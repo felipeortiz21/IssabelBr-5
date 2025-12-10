@@ -31,6 +31,27 @@
     {$HEADER}
     {$HEADER_MODULES}
     </head>
+
+    <script>
+        (function() {
+            var modulosCollapse = ['agent_console', 'campaign_monitoring'];
+            var urlParams = new URLSearchParams(window.location.search);
+             var menuAtual = urlParams.get('menu');
+    
+             if (modulosCollapse.indexOf(menuAtual) !== -1) {
+              window.addEventListener('load', function() {
+                  setTimeout(function() {
+                    var btn = document.querySelector('.sidebar-collapse-icon');
+                    if (btn && !document.body.classList.contains('sidebar-collapsed')) {
+                    btn.click();
+                    }
+                  }, 200);
+              });
+            }  
+        })();
+    </script>
+
+
     <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="mainBody page-body" {$BODYPARAMS}>
     <div class="page-container">
 
