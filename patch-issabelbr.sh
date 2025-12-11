@@ -21,28 +21,19 @@ echo "INICIANDO O PROCESSO..."
 echo ""
 echo "Instalando ferramentas úteis..."
 echo ""
-#sed -i s/http:/https:/g /etc/yum.repos.d/C*.repo
-#sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/C*.repo
-#sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/C*.repo
-#sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/C*.repo
-#yum install epel-release -y
 yum install wget git mtr vim mlocate nmap tcpdump mc nano lynx rsync minicom screen htop subversion yum-utils p7zip p7zip-plugins -y
 updatedb
 echo ""
 echo "Atualizando o sistema..."
 echo ""
 git clone https://github.com/felipeortiz21/IssabelBr-5.git /usr/src/IssabelBR
-#rsync --progress -r /usr/src/IssabelBR/repo/ /etc/yum.repos.d/
 yum -y update && yum -y upgrade
 echo ""
 echo "Instalando patch de idiomas, cdr e bilhetagem..."
 echo ""
 #cp /var/www/html/modules/billing_report/index.php /var/www/html/modules/billing_report/index.php.bkp
 #cp /var/www/html/modules/cdrreport/index.php /var/www/html/modules/cdrreport/index.php.bkp
-#cp /var/www/html/modules/monitoring/index.php /var/www/html/modules/monitoring/index.php.bkp
-#cp /var/www/html/modules/campaign_monitoring/index.php /var/www/html/modules/campaign_monitoring/index.php.bkp
 rsync --progress -r /usr/src/IssabelBR/web/ /var/www/html/
-#amportal restart
 echo ""
 echo "Instalando audio em Português Brasil"
 echo ""
@@ -68,37 +59,6 @@ chown asterisk.asterisk /etc/asterisk/extensions_tratamento_hangupcause.conf
 echo ""
 chown -R asterisk.asterisk /var/lib/asterisk/agi-bin/*
 chown -R asterisk.asterisk /var/lib/asterisk/agi-bin/
-#test=`asterisk -V | grep "13"`
-#if [[ -z $test ]]; then
-# release="11"
-#else
-# release="13"
-#fi
-#if [[ "$release" = "13" ]]; then
-# cp /usr/src/IssabelBR/codecs/codec_g729-ast130-gcc4-glibc2.2-x86_64-pentium4.so /usr/lib64/asterisk/modules/codec_g729.so
-# chmod 755 /usr/lib64/asterisk/modules/codec_g729.so
-# asterisk -rx "module load codec_g729"
-# rsync --progress -r -u /usr/src/IssabelBR/callcenter13/ /opt/issabel/dialer/
-# chown asterisk.asterisk /opt/issabel/dialer/
-# echo ""
-# echo "Ajustando arquivo features.conf para Asterisk 13"
-# echo ""
-# cp /var/www/html/admin/modules/parking/functions.inc/dialplan.php /var/www/html/admin/modules/parking/functions.inc/dialplan.php.bkp
-# CHECKFILE=$(sed '63!d' /var/www/html/admin/modules/parking/functions.inc/dialplan.php); if [[ "${CHECKFILE}" == *"addFeatureGeneral('parkedplay"* ]]; then sed -i '63d' /var/www/html/admin/modules/parking/functions.inc/dialplan.php; echo "Ajuste efetuado"; else echo "Não é necessário efetuar o ajuste"; fi
-# sed -i '/parkedplay=both/d' /etc/asterisk/features_general_additional.conf
-# echo ""
-# yum install asterisk13-sqlite3.x86_64 -y
-# mv -n /etc/asterisk/cdr_sqlite3_custom.conf /etc/asterisk/cdr_sqlite3_custom.conf.bkp
-# mv -n /etc/asterisk/cdr_sqlite3_custom_a13.conf /etc/asterisk/cdr_sqlite3_custom.conf
-# sed -i '/app_mysql.so/d' /etc/asterisk/modules_custom.conf
-# echo "noload => appmysql.so" >> /etc/asterisk/modules_custom.conf
-# sed -i '/cdr_mysql.so/d' /etc/asterisk/modules_custom.conf
-# echo "noload => cdrmysql.so" >> /etc/asterisk/modules_custom.conf
-#else
-# cp /usr/src/IssabelBR/codecs/codec_g729-ast110-gcc4-glibc-x86_64-pentium4.so /usr/lib64/asterisk/modules/codec_g729.so
-# chmod 755 /usr/lib64/asterisk/modules/codec_g729.so
-# asterisk -rx "module load codec_g729"
-#fi
 echo ""
 echo "Instalando sngrep"
 echo "" 
@@ -117,42 +77,55 @@ enabled_metadata=1
 rpm --import https://download.copr.fedorainfracloud.org/results/irontec/sngrep/pubkey.gpg
 yum install sngrep -y
 echo ""
-#wget https://bintray.com/ookla/rhel/rpm -O /etc/yum.repos.d/bintray-ookla-rhel.repo
-#yum install speedtest -y
 wget -O /usr/bin/speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
 chmod +x /usr/bin/speedtest-cli
-#echo "REMOVENDO CADASTRO TELA INDEX"
+echo "REMOVENDO CADASTRO TELA INDEX"
 echo ""
-#sed -i -r 's/666699/33697B/' /var/www/html/modules/pbxadmin/themes/default/css/mainstyle.css
-#sed -i -r 's/666699/33697B/' /var/www/html/admin/assets/css/mainstyle.css
-#sed -i '/neo-modal-issabel-popup-box/d' /var/www/html/themes/tenant/_common/index.tpl
-#sed -i '/neo-modal-issabel-popup-title/d' /var/www/html/themes/tenant/_common/index.tpl
-#sed -i '/neo-modal-issabel-popup-close/d' /var/www/html/themes/tenant/_common/index.tpl
-#sed -i '/neo-modal-issabel-popup-content/d' /var/www/html/themes/tenant/_common/index.tpl
-#sed -i '/neo-modal-issabel-popup-blockmask/d' /var/www/html/themes/tenant/_common/index.tpl
-echo ""
-#echo "REMOVENDO VERSÕES ANTIGAS DO KERNEL"
-#package-cleanup --oldkernels --count=2 -y
-#yum update -y
-#echo ""
-#echo "EFETUANDO DOWNGRADE DO MÓDULO CALL CENTER PARA VERSÃO 4.0.4"
-#yum downgrade issabel-callcenter-4.0.0-4 -y
+sed -i -r 's/666699/33697B/' /var/www/html/modules/pbxadmin/themes/default/css/mainstyle.css
+sed -i -r 's/666699/33697B/' /var/www/html/admin/assets/css/mainstyle.css
+sed -i '/neo-modal-issabel-popup-box/d' /var/www/html/themes/tenant/_common/index.tpl
+sed -i '/neo-modal-issabel-popup-title/d' /var/www/html/themes/tenant/_common/index.tpl
+sed -i '/neo-modal-issabel-popup-close/d' /var/www/html/themes/tenant/_common/index.tpl
+sed -i '/neo-modal-issabel-popup-content/d' /var/www/html/themes/tenant/_common/index.tpl
+sed -i '/neo-modal-issabel-popup-blockmask/d' /var/www/html/themes/tenant/_common/index.tpl
 echo ""
 echo "ALTERANDO MUSICONHOLD AGENTS"
 echo ""
 sed -i -r 's/;musiconhold=default/musiconhold=none/' /etc/asterisk/agents.conf
-#sed -i s/http:/https:/g /etc/yum.repos.d/C*.repo
-#sed -i s/mirror.centos.org/vault.centos.org/g /etc/yum.repos.d/C*.repo
-#sed -i s/^#.*baseurl=http/baseurl=http/g /etc/yum.repos.d/C*.repo
-#sed -i s/^mirrorlist=http/#mirrorlist=http/g /etc/yum.repos.d/C*.repo
-#echo ""
-#echo "INSTALANDO VERSÃO NOVA DOS RELATÓRIOS DE LIGAÇÕES E GRAVAÇÕES DE LIGAÇÕES"
-#yum --enablerepo=issabel-beta update issabel-reports -y
-#rsync --progress -r /usr/src/IssabelBR/web2/ /var/www/html/modules/
-#echo ""
 rm -Rf /usr/src/IssabelBR
-#amportal a ma install trunkbalance
-#amportal a ma upgradeall
+rm -rf /var/www/html/themes/tenant/images/issabel_logo_pattern.png
+sed -i '/\/usr\/local\/sbin\/motd.sh/d' /etc/profile.d/login-info.sh
+sed -i '/^#!\/bin\/bash/a printf "\\e[32m\\nSpiralPBX - Callcenter\\n\\n\\e[0m"' /etc/profile.d/login-info.sh
+echo "Configurando novo Painel Operador"
+echo ""
+ACL_DB="/var/www/db/acl.db"
+MENU_DB="/var/www/db/menu.db"
+
+echo "== Verificando bancos SQLite =="
+
+if [ ! -f "$ACL_DB" ] || [ ! -f "$MENU_DB" ]; then
+    echo "ERRO: Um dos arquivos de banco não existe."
+    exit 1
+fi
+
+echo "== Adicionando recurso em acl.db =="
+
+sqlite3 "$ACL_DB" <<EOF
+INSERT INTO acl_resource (name, description)
+SELECT 'control_panel', 'Monitoramento'
+WHERE NOT EXISTS (SELECT 1 FROM acl_resource WHERE name='control_panel');
+EOF
+
+echo "== Adicionando menu em menu.db =="
+
+sqlite3 "$MENU_DB" <<EOF
+INSERT INTO menu (id, IdParent, Link, Name, Type, order_no)
+SELECT 'control_panel', 'pbxconfig', '', 'Monitoramento', 'module', 8
+WHERE NOT EXISTS (SELECT 1 FROM menu WHERE id='control_panel');
+EOF
+
+echo ""
+echo "Reiniciando serviços..."
 amportal reload
 amportal restart
 clear

@@ -109,6 +109,7 @@ function setIcon($idMenu){
         case 'my_extension': return 'fa fa-fax';
         case 'addons': return 'fa fa-cubes';
         case 'extras': return 'fa fa-plus';
+        case 'call_center': return 'fa fa-headphones';
         //case 'sysdash': return 'fa fa-tachometer';
 
         default: return 'fa fa-caret-right';

@@ -113,7 +113,7 @@
 
 	<img src="{$WEBPATH}themes/{$THEMENAME}/images/logo_padrao.png" alt="Issabel Logo" class="logo">
 
-	<h3>Bem-vindo ao Issabel</h3>
+	<h3>Bem-vindo a SpiralPBX</h3>
 
 	{if !empty({$LOGIN_INCORRECT})}
 		<div class="form-login-error"><h3>{$LOGIN_INCORRECT}</h3></div>
@@ -135,7 +135,7 @@
 	</form>
 
 	<div class="login-bottom-links">
-		<a href="http://www.issabel.org" target="_blank">Issabel</a> {$ISSABEL_LICENSED}
+		<a href="spiralsolucoes.com" target="_blank">SpiralPBX</a> {$ISSABEL_LICENSED}
 		<a href="http://www.opensource.org/licenses/gpl-license.php" target="_blank">GPL</a>. 2006 - {$currentyear}.
 	</div>
 </div>
