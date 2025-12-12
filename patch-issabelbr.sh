@@ -96,6 +96,7 @@ rm -Rf /usr/src/IssabelBR
 rm -rf /var/www/html/themes/tenant/images/issabel_logo_pattern.png
 sed -i '/\/usr\/local\/sbin\/motd.sh/d' /etc/profile.d/login-info.sh
 sed -i '/^#!\/bin\/bash/a printf "\\e[32m\\nSpiralPBX - Callcenter\\n\\n\\e[0m"' /etc/profile.d/login-info.sh
+msgfmt /var/www/html/admin/modules/queues/i18n/pt_BR/LC_MESSAGES/queues.po -o /var/www/html/admin/modules/queues/i18n/pt_BR/LC_MESSAGES/queues.mo
 echo "Configurando novo Painel Operador"
 echo ""
 ACL_DB="/var/www/db/acl.db"

@@ -1,61 +1,266 @@
+/* ================================================
+   FAQ/ACCORDION MODERNIZADO
+   Design clean com animações suaves
+   ================================================ */
+
 .faq {
-    padding: 10px 0 0 0px;
-    z-index:1; 
+  padding: 10px 0 0 0;
+  z-index: 1;
+  margin: 15px 0;
 }
 
+/* === ESTRUTURA DO FAQ === */
 .faq2 dt {
-    margin-top: 0px;/*-1*/
-    border: solid 1px #000000;/*c4c4c4*/
-    padding: 4px 10px 4px 10px;
-    line-height: 1.6;/*1.2*/
-    font-size: 13px;
-    z-index:2;
-    background-color: #0f0f0f8c;
-    color: white;
+  margin-top: 0;
+  border: none;
+  padding: 15px 20px;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 2;
+  background: white;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
+/* === BARRA LATERAL COLORIDA === */
+.faq2 dt::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+/* === ÍCONE DE SETA === */
+.faq2 dt::after {
+  content: '\f107'; /* FontAwesome chevron-down */
+  font-family: 'FontAwesome';
+  font-size: 18px;
+  color: #667eea;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+  padding-left: 15px;
+}
+
+/* === ESTADO FECHADO === */
 .faq2 dt.faqClosed {
-    color: #3c3c3c !important;
-    background: #ffffff  !important;
-    z-index:2;
+  color: #2c3e50 !important;
+  background: white !important;
+  z-index: 2;
 }
+
+.faq2 dt.faqClosed:hover {
+  background: #f8f9fa !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.faq2 dt.faqClosed::before {
+  width: 4px;
+}
+
+.faq2 dt.faqClosed::after {
+  transform: rotate(0deg);
+  color: #667eea;
+}
+
+/* === ESTADO ABERTO === */
 .faq2 dt.faqOpen {
-    color: #FFFFFF;
-    background: #313b61;
-    z-index:2;
+  color: white !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-/*
-.faq dd {
-    display: block;
-    margin: 0;
-    padding: 0 21px;
-    overflow: hidden;
-    z-index:2;
+.faq2 dt.faqOpen::before {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
 }
 
+.faq2 dt.faqOpen::after {
+  transform: rotate(180deg);
+  color: white;
+}
 
+/* === CONTEÚDO DO FAQ === */
+.faq2 dd {
+  display: block;
+  margin: 0;
+  padding: 0 20px 15px 24px;
+  overflow: hidden;
+  z-index: 1;
+  background: white;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+
+/* === BOTÃO PARA O TOPO === */
 .faq .faqToTop {
-    display: block;
-    text-align: right;
-    font-size: 0.75em;
+  display: block;
+  text-align: right;
+  font-size: 0.75em;
+  color: #667eea;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
-.faq2 .faqHide, .faq2 .faqShow {
-    display: block;
-    margin: 0px 0;
-    padding: 2px 0 0 28px;
-    text-decoration: none;
-    font-size: 12px;
-
-    background-color:#CCCCCC;
-    width: 600px;
-    height: 22px;
-	border: black solid 1px;
-	border-style: groove;
-
+.faq .faqToTop:hover {
+  color: #764ba2;
+  text-decoration: underline;
 }
-.faq .faqShow {
-    z-index:3;
+
+/* === VARIAÇÕES DE CORES === */
+.faq2 dt.success {
+  border-left-color: #00d2ff;
 }
-*/
+
+.faq2 dt.success.faqOpen {
+  background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%) !important;
+}
+
+.faq2 dt.warning {
+  border-left-color: #f6d365;
+}
+
+.faq2 dt.warning.faqOpen {
+  background: linear-gradient(135deg, #fda085 0%, #f6d365 100%) !important;
+}
+
+.faq2 dt.danger {
+  border-left-color: #ff4757;
+}
+
+.faq2 dt.danger.faqOpen {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%) !important;
+}
+
+/* === ESTILO PARA LISTA DENTRO DO FAQ === */
+.faq2 dd ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.faq2 dd ul li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+}
+
+.faq2 dd ul li::before {
+  content: '\f00c'; /* FontAwesome check */
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: 0;
+  color: #667eea;
+  font-size: 14px;
+}
+
+/* === TRANSIÇÕES SUAVES === */
+.faq2 dt,
+.faq2 dd {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === EFEITO HOVER === */
+.faq2 dt:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq2 dt.faqClosed:hover::before {
+  width: 6px;
+}
+
+/* === RESPONSIVIDADE === */
+@media only screen and (max-width: 768px) {
+  .faq2 dt {
+    padding: 12px 15px;
+    font-size: 13px;
+  }
+  
+  .faq2 dd {
+    padding: 10px 15px;
+  }
+  
+  .faq2 dt::after {
+    font-size: 16px;
+  }
+}
+
+/* === ESTADOS ADICIONAIS === */
+.faq2 dt:active {
+  transform: scale(0.98);
+}
+
+.faq2 dt.faqClosed:active {
+  transform: scale(0.98) translateX(5px);
+}
+
+/* === LOADING STATE === */
+.faq2 dt.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.faq2 dt.loading::after {
+  content: '\f110'; /* FontAwesome spinner */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* === ACESSIBILIDADE === */
+.faq2 dt:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* === DARK MODE (OPCIONAL) === */
+@media (prefers-color-scheme: dark) {
+  .faq2 dt.faqClosed {
+    background: #2c3e50 !important;
+    color: #ecf0f1 !important;
+  }
+  
+  .faq2 dt.faqClosed:hover {
+    background: #34495e !important;
+  }
+  
+  .faq2 dd {
+    background: #2c3e50;
+    color: #ecf0f1;
+  }
+}
