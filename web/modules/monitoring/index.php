@@ -288,8 +288,15 @@ function reportMonitoring($smarty, $module_name, $local_templates_dir, &$pDB, $p
     $content = $oGrid->fetchGrid();
 
     //end grid parameters
-
-    return $content;
+    $style = "<style>
+        #neo-table-header-filterrow { display: block !important; position: relative !important; visibility: visible !important; width: 100% !important; background: none !important; border: none !important; padding: 0 !important; margin: 0 !important; text-align: left !important; }
+        #filters { display: block !important; height: auto !important; text-align: left !important; }
+        #filters table { width: auto !important; margin: 5px 0 10px 10px !important; background: #ffffff !important; border: 1px solid #dee2e6 !important; border-radius: 4px !important; padding: 8px !important; border-collapse: separate !important; border-spacing: 5px 2px !important; box-shadow: 2px 2px 5px rgba(0,0,0,0.05) !important; }
+        #filters input[type='submit'] { background-color: #6c757d !important; color: white !important; border: none !important; border-radius: 3px !important; padding: 3px 12px !important; cursor: pointer; }
+        .neo-table-header-row-filter-ctrl, a[href='#filters'], .neo-filter-control { display: none !important; }
+    </style>";
+    
+    return $style .$content;
 }
 
 function formatCallRecordingTuple($value)
