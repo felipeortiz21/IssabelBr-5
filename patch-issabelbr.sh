@@ -130,6 +130,82 @@ echo "Reiniciando serviços..."
 amportal reload
 amportal restart
 clear
+echo "------------------------------------------------------------------"
+echo "----------------------------------------------"
+echo "Configurando sistema de limite de ramais..."
+echo ""
+
+CONF_FILE="/etc/amportal.conf"
+
+if [ -f "$CONF_FILE" ]; then
+    DB_USER=$(grep AMPDBUSER $CONF_FILE | cut -d= -f2)
+    DB_PASS=$(grep AMPDBPASS $CONF_FILE | cut -d= -f2)
+    DB_HOST=$(grep AMPDBHOST $CONF_FILE | cut -d= -f2)
+else
+    echo "Arquivo amportal.conf não encontrado!"
+    exit 1
+fi
+
+# Criar tabela (estrutura simples e segura)
+mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" asterisk <<EOF
+CREATE TABLE IF NOT EXISTS ramais_limite (
+    id TINYINT PRIMARY KEY,
+    limite INT NOT NULL,
+    ativo TINYINT(1) DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT IGNORE INTO ramais_limite (id, limite, ativo)
+VALUES (1, 1, 1);
+EOF
+
+echo "Tabela criada/verificada com limite inicial = 1"
+
+# Criar script de alteração
+cat <<'EOF' > /usr/local/bin/limite_ramais.sh
+#!/bin/bash
+
+DB="asterisk"
+CONF_FILE="/etc/amportal.conf"
+
+MYSQL_USER=$(grep AMPDBUSER $CONF_FILE | cut -d= -f2)
+MYSQL_PASS=$(grep AMPDBPASS $CONF_FILE | cut -d= -f2)
+MYSQL_HOST=$(grep AMPDBHOST $CONF_FILE | cut -d= -f2)
+
+echo "======================================="
+echo "   ALTERADOR DE LIMITE DE RAMAIS"
+echo "======================================="
+echo ""
+
+echo "Limite atual:"
+mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" -D "$DB" \
+-e "SELECT limite, ativo, created_at FROM ramais_limite WHERE id = 1;"
+
+echo ""
+read -p "Digite o novo limite de ramais: " NOVO_LIMITE
+
+if ! [[ "$NOVO_LIMITE" =~ ^[0-9]+$ ]]; then
+    echo "Erro: Digite apenas números."
+    exit 1
+fi
+
+mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" -D "$DB" \
+-e "UPDATE ramais_limite SET limite = $NOVO_LIMITE, ativo = 1 WHERE id = 1;"
+
+echo ""
+echo "Limite atualizado com sucesso!"
+echo ""
+
+mysql -h "$MYSQL_HOST" -u "$MYSQL_USER" -p"$MYSQL_PASS" -D "$DB" \
+-e "SELECT limite FROM ramais_limite WHERE id = 1;"
+echo ""
+EOF
+
+chmod +x /usr/local/bin/limite_ramais.sh
+
+echo "Script /usr/local/bin/limite_ramais.sh criado com sucesso."
+echo ""
+echo "------------------------------------------------------------------"
 echo " _____               _          _    _    ____  _____  "
 echo "|_   _|             | |v$versao "' | |/\| |/\|  _ \|  __ \ '
 echo '  | |  ___ ___  __ _| |__   ___| |\ ` ´ /| |_) | |__) |'
@@ -145,3 +221,4 @@ echo "Obrigado!"
 echo ""
 echo "** RECOMENDADO REINICIAR O SERVIDOR PARA EXECUTAR NOVO KERNEL E NOVO DAHDI **"
 echo ""
+
